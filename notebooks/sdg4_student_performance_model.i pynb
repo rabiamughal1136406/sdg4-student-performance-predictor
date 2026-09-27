@@ -45,27 +45,12 @@
     },
     {
       "cell_type": "code",
-      "execution_count": null,
+      "source": [],
       "metadata": {
-        "id": "gJr_9dXGpJ05",
-        "outputId": "beb4aaca-6eac-4b30-f2ff-ea4308968122"
+        "id": "pzPx4CvHSB0K"
       },
-      "outputs": [
-        {
-          "data": {
-            "text/plain": [
-              "86400"
-            ]
-          },
-          "execution_count": null,
-          "metadata": {},
-          "output_type": "execute_result"
-        }
-      ],
-      "source": [
-        "seconds_in_a_day = 24 * 60 * 60\n",
-        "seconds_in_a_day"
-      ]
+      "execution_count": null,
+      "outputs": []
     },
     {
       "cell_type": "markdown",
@@ -80,43 +65,19 @@
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {
-        "id": "-gE-Ez1qtyIA",
-        "outputId": "e8f0c2b1-3c1e-4476-f8c2-d8f31cdb5e75"
-      },
-      "outputs": [
-        {
-          "data": {
-            "text/plain": [
-              "604800"
-            ]
-          },
-          "execution_count": null,
-          "metadata": {},
-          "output_type": "execute_result"
-        }
-      ],
-      "source": [
-        "seconds_in_a_week = 7 * seconds_in_a_day\n",
-        "seconds_in_a_week"
-      ]
-    },
-    {
-      "cell_type": "code",
       "source": [
         "from google.colab import files\n",
         "uploaded = files.upload()"
       ],
       "metadata": {
-        "id": "6zVydZTJ0p39",
-        "outputId": "e85c746a-d1df-46e9-cc60-ba97c9bd465b",
+        "id": "z4KwU5RzT8x9",
+        "outputId": "19468fd5-5ad9-483d-9e46-8091291c7790",
         "colab": {
           "base_uri": "https://localhost:8080/",
           "height": 73
         }
       },
-      "execution_count": 22,
+      "execution_count": 3,
       "outputs": [
         {
           "output_type": "display_data",
@@ -126,9 +87,9 @@
             ],
             "text/html": [
               "\n",
-              "     <input type=\"file\" id=\"files-cbb40b6c-b445-499c-aae7-e25bfc37f5b9\" name=\"files[]\" multiple disabled\n",
+              "     <input type=\"file\" id=\"files-d3edb6f5-5e59-4dbc-b7c1-7cc5269c64d6\" name=\"files[]\" multiple disabled\n",
               "        style=\"border:none\" />\n",
-              "     <output id=\"result-cbb40b6c-b445-499c-aae7-e25bfc37f5b9\">\n",
+              "     <output id=\"result-d3edb6f5-5e59-4dbc-b7c1-7cc5269c64d6\">\n",
               "      Upload widget is only available when the cell has been executed in the\n",
               "      current browser session. Please rerun this cell to enable.\n",
               "      </output>\n",
@@ -316,7 +277,7 @@
           "output_type": "stream",
           "name": "stdout",
           "text": [
-            "Saving students_performance.csv to students_performance (1).csv\n"
+            "Saving students_performance.csv to students_performance.csv\n"
           ]
         }
       ]
@@ -325,348 +286,46 @@
       "cell_type": "code",
       "source": [
         "import pandas as pd\n",
-        "\n",
-        "# Load the dataset directly from the Colab folder\n",
-        "df = pd.read_csv('students_performance.csv')\n",
-        "\n",
-        "# Clean column names\n",
-        "df.columns = df.columns.str.replace(' ', '_')\n",
-        "\n",
-        "# Convert text columns to numbers for the AI\n",
-        "df_encoded = pd.get_dummies(df, drop_first=True)\n",
-        "\n",
-        "# Look at the first 5 rows\n",
-        "df_encoded.head()"
-      ],
-      "metadata": {
-        "id": "Q3w2rt8T00sM",
-        "outputId": "34bd7062-3631-44d8-abf5-0b147888c936",
-        "colab": {
-          "base_uri": "https://localhost:8080/",
-          "height": 243
-        }
-      },
-      "execution_count": 24,
-      "outputs": [
-        {
-          "output_type": "execute_result",
-          "data": {
-            "text/plain": [
-              "   math_score  reading_score  writing_score  gender_male  \\\n",
-              "0          72             72             74        False   \n",
-              "1          69             90             88        False   \n",
-              "2          90             95             93        False   \n",
-              "3          47             57             44         True   \n",
-              "4          76             78             75         True   \n",
-              "\n",
-              "   race/ethnicity_group B  race/ethnicity_group C  race/ethnicity_group D  \\\n",
-              "0                    True                   False                   False   \n",
-              "1                   False                    True                   False   \n",
-              "2                    True                   False                   False   \n",
-              "3                   False                   False                   False   \n",
-              "4                   False                    True                   False   \n",
-              "\n",
-              "   race/ethnicity_group E  parental_level_of_education_bachelor's degree  \\\n",
-              "0                   False                                           True   \n",
-              "1                   False                                          False   \n",
-              "2                   False                                          False   \n",
-              "3                   False                                          False   \n",
-              "4                   False                                          False   \n",
-              "\n",
-              "   parental_level_of_education_high school  \\\n",
-              "0                                    False   \n",
-              "1                                    False   \n",
-              "2                                    False   \n",
-              "3                                    False   \n",
-              "4                                    False   \n",
-              "\n",
-              "   parental_level_of_education_master's degree  \\\n",
-              "0                                        False   \n",
-              "1                                        False   \n",
-              "2                                         True   \n",
-              "3                                        False   \n",
-              "4                                        False   \n",
-              "\n",
-              "   parental_level_of_education_some college  \\\n",
-              "0                                     False   \n",
-              "1                                      True   \n",
-              "2                                     False   \n",
-              "3                                     False   \n",
-              "4                                      True   \n",
-              "\n",
-              "   parental_level_of_education_some high school  lunch_standard  \\\n",
-              "0                                         False            True   \n",
-              "1                                         False            True   \n",
-              "2                                         False            True   \n",
-              "3                                         False           False   \n",
-              "4                                         False            True   \n",
-              "\n",
-              "   test_preparation_course_none  \n",
-              "0                          True  \n",
-              "1                         False  \n",
-              "2                          True  \n",
-              "3                          True  \n",
-              "4                          True  "
-            ],
-            "text/html": [
-              "\n",
-              "  <div id=\"df-7a6e079f-f3d1-4ea5-aba5-05ae6de85fd2\" class=\"colab-df-container\">\n",
-              "    <div>\n",
-              "<style scoped>\n",
-              "    .dataframe tbody tr th:only-of-type {\n",
-              "        vertical-align: middle;\n",
-              "    }\n",
-              "\n",
-              "    .dataframe tbody tr th {\n",
-              "        vertical-align: top;\n",
-              "    }\n",
-              "\n",
-              "    .dataframe thead th {\n",
-              "        text-align: right;\n",
-              "    }\n",
-              "</style>\n",
-              "<table border=\"1\" class=\"dataframe\">\n",
-              "  <thead>\n",
-              "    <tr style=\"text-align: right;\">\n",
-              "      <th></th>\n",
-              "      <th>math_score</th>\n",
-              "      <th>reading_score</th>\n",
-              "      <th>writing_score</th>\n",
-              "      <th>gender_male</th>\n",
-              "      <th>race/ethnicity_group B</th>\n",
-              "      <th>race/ethnicity_group C</th>\n",
-              "      <th>race/ethnicity_group D</th>\n",
-              "      <th>race/ethnicity_group E</th>\n",
-              "      <th>parental_level_of_education_bachelor's degree</th>\n",
-              "      <th>parental_level_of_education_high school</th>\n",
-              "      <th>parental_level_of_education_master's degree</th>\n",
-              "      <th>parental_level_of_education_some college</th>\n",
-              "      <th>parental_level_of_education_some high school</th>\n",
-              "      <th>lunch_standard</th>\n",
-              "      <th>test_preparation_course_none</th>\n",
-              "    </tr>\n",
-              "  </thead>\n",
-              "  <tbody>\n",
-              "    <tr>\n",
-              "      <th>0</th>\n",
-              "      <td>72</td>\n",
-              "      <td>72</td>\n",
-              "      <td>74</td>\n",
-              "      <td>False</td>\n",
-              "      <td>True</td>\n",
-              "      <td>False</td>\n",
-              "      <td>False</td>\n",
-              "      <td>False</td>\n",
-              "      <td>True</td>\n",
-              "      <td>False</td>\n",
-              "      <td>False</td>\n",
-              "      <td>False</td>\n",
-              "      <td>False</td>\n",
-              "      <td>True</td>\n",
-              "      <td>True</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>1</th>\n",
-              "      <td>69</td>\n",
-              "      <td>90</td>\n",
-              "      <td>88</td>\n",
-              "      <td>False</td>\n",
-              "      <td>False</td>\n",
-              "      <td>True</td>\n",
-              "      <td>False</td>\n",
-              "      <td>False</td>\n",
-              "      <td>False</td>\n",
-              "      <td>False</td>\n",
-              "      <td>False</td>\n",
-              "      <td>True</td>\n",
-              "      <td>False</td>\n",
-              "      <td>True</td>\n",
-              "      <td>False</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>2</th>\n",
-              "      <td>90</td>\n",
-              "      <td>95</td>\n",
-              "      <td>93</td>\n",
-              "      <td>False</td>\n",
-              "      <td>True</td>\n",
-              "      <td>False</td>\n",
-              "      <td>False</td>\n",
-              "      <td>False</td>\n",
-              "      <td>False</td>\n",
-              "      <td>False</td>\n",
-              "      <td>True</td>\n",
-              "      <td>False</td>\n",
-              "      <td>False</td>\n",
-              "      <td>True</td>\n",
-              "      <td>True</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>3</th>\n",
-              "      <td>47</td>\n",
-              "      <td>57</td>\n",
-              "      <td>44</td>\n",
-              "      <td>True</td>\n",
-              "      <td>False</td>\n",
-              "      <td>False</td>\n",
-              "      <td>False</td>\n",
-              "      <td>False</td>\n",
-              "      <td>False</td>\n",
-              "      <td>False</td>\n",
-              "      <td>False</td>\n",
-              "      <td>False</td>\n",
-              "      <td>False</td>\n",
-              "      <td>False</td>\n",
-              "      <td>True</td>\n",
-              "    </tr>\n",
-              "    <tr>\n",
-              "      <th>4</th>\n",
-              "      <td>76</td>\n",
-              "      <td>78</td>\n",
-              "      <td>75</td>\n",
-              "      <td>True</td>\n",
-              "      <td>False</td>\n",
-              "      <td>True</td>\n",
-              "      <td>False</td>\n",
-              "      <td>False</td>\n",
-              "      <td>False</td>\n",
-              "      <td>False</td>\n",
-              "      <td>False</td>\n",
-              "      <td>True</td>\n",
-              "      <td>False</td>\n",
-              "      <td>True</td>\n",
-              "      <td>True</td>\n",
-              "    </tr>\n",
-              "  </tbody>\n",
-              "</table>\n",
-              "</div>\n",
-              "    <div class=\"colab-df-buttons\">\n",
-              "\n",
-              "  <div class=\"colab-df-container\">\n",
-              "    <button class=\"colab-df-convert\" onclick=\"convertToInteractive('df-7a6e079f-f3d1-4ea5-aba5-05ae6de85fd2')\"\n",
-              "            title=\"Convert this dataframe to an interactive table.\"\n",
-              "            style=\"display:none;\">\n",
-              "\n",
-              "  <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 -960 960 960\">\n",
-              "    <path d=\"M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z\"/>\n",
-              "  </svg>\n",
-              "    </button>\n",
-              "\n",
-              "  <style>\n",
-              "    .colab-df-container {\n",
-              "      display:flex;\n",
-              "      gap: 12px;\n",
-              "    }\n",
-              "\n",
-              "    .colab-df-convert {\n",
-              "      background-color: #E8F0FE;\n",
-              "      border: none;\n",
-              "      border-radius: 50%;\n",
-              "      cursor: pointer;\n",
-              "      display: none;\n",
-              "      fill: #1967D2;\n",
-              "      height: 32px;\n",
-              "      padding: 0 0 0 0;\n",
-              "      width: 32px;\n",
-              "    }\n",
-              "\n",
-              "    .colab-df-convert:hover {\n",
-              "      background-color: #E2EBFA;\n",
-              "      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);\n",
-              "      fill: #174EA6;\n",
-              "    }\n",
-              "\n",
-              "    .colab-df-buttons div {\n",
-              "      margin-bottom: 4px;\n",
-              "    }\n",
-              "\n",
-              "    [theme=dark] .colab-df-convert {\n",
-              "      background-color: #3B4455;\n",
-              "      fill: #D2E3FC;\n",
-              "    }\n",
-              "\n",
-              "    [theme=dark] .colab-df-convert:hover {\n",
-              "      background-color: #434B5C;\n",
-              "      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);\n",
-              "      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));\n",
-              "      fill: #FFFFFF;\n",
-              "    }\n",
-              "  </style>\n",
-              "\n",
-              "    <script>\n",
-              "      const buttonEl =\n",
-              "        document.querySelector('#df-7a6e079f-f3d1-4ea5-aba5-05ae6de85fd2 button.colab-df-convert');\n",
-              "      buttonEl.style.display =\n",
-              "        google.colab.kernel.accessAllowed ? 'block' : 'none';\n",
-              "\n",
-              "      async function convertToInteractive(key) {\n",
-              "        const element = document.querySelector('#df-7a6e079f-f3d1-4ea5-aba5-05ae6de85fd2');\n",
-              "        const dataTable =\n",
-              "          await google.colab.kernel.invokeFunction('convertToInteractive',\n",
-              "                                                    [key], {});\n",
-              "        if (!dataTable) return;\n",
-              "\n",
-              "        const docLinkHtml = 'Like what you see? Visit the ' +\n",
-              "          '<a target=\"_blank\" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'\n",
-              "          + ' to learn more about interactive tables.';\n",
-              "        element.innerHTML = '';\n",
-              "        dataTable['output_type'] = 'display_data';\n",
-              "        await google.colab.output.renderOutput(dataTable, element);\n",
-              "        const docLink = document.createElement('div');\n",
-              "        docLink.innerHTML = docLinkHtml;\n",
-              "        element.appendChild(docLink);\n",
-              "      }\n",
-              "    </script>\n",
-              "  </div>\n",
-              "\n",
-              "\n",
-              "    </div>\n",
-              "  </div>\n"
-            ],
-            "application/vnd.google.colaboratory.intrinsic+json": {
-              "type": "dataframe",
-              "variable_name": "df_encoded",
-              "summary": "{\n  \"name\": \"df_encoded\",\n  \"rows\": 1000,\n  \"fields\": [\n    {\n      \"column\": \"math_score\",\n      \"properties\": {\n        \"dtype\": \"number\",\n        \"std\": 15,\n        \"min\": 0,\n        \"max\": 100,\n        \"num_unique_values\": 81,\n        \"samples\": [\n          55,\n          72,\n          70\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"reading_score\",\n      \"properties\": {\n        \"dtype\": \"number\",\n        \"std\": 14,\n        \"min\": 17,\n        \"max\": 100,\n        \"num_unique_values\": 72,\n        \"samples\": [\n          78,\n          23,\n          69\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"writing_score\",\n      \"properties\": {\n        \"dtype\": \"number\",\n        \"std\": 15,\n        \"min\": 10,\n        \"max\": 100,\n        \"num_unique_values\": 77,\n        \"samples\": [\n          75,\n          76,\n          52\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"gender_male\",\n      \"properties\": {\n        \"dtype\": \"boolean\",\n        \"num_unique_values\": 2,\n        \"samples\": [\n          true,\n          false\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"race/ethnicity_group B\",\n      \"properties\": {\n        \"dtype\": \"boolean\",\n        \"num_unique_values\": 2,\n        \"samples\": [\n          false,\n          true\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"race/ethnicity_group C\",\n      \"properties\": {\n        \"dtype\": \"boolean\",\n        \"num_unique_values\": 2,\n        \"samples\": [\n          true,\n          false\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"race/ethnicity_group D\",\n      \"properties\": {\n        \"dtype\": \"boolean\",\n        \"num_unique_values\": 2,\n        \"samples\": [\n          true,\n          false\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"race/ethnicity_group E\",\n      \"properties\": {\n        \"dtype\": \"boolean\",\n        \"num_unique_values\": 2,\n        \"samples\": [\n          true,\n          false\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"parental_level_of_education_bachelor's degree\",\n      \"properties\": {\n        \"dtype\": \"boolean\",\n        \"num_unique_values\": 2,\n        \"samples\": [\n          false,\n          true\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"parental_level_of_education_high school\",\n      \"properties\": {\n        \"dtype\": \"boolean\",\n        \"num_unique_values\": 2,\n        \"samples\": [\n          true,\n          false\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"parental_level_of_education_master's degree\",\n      \"properties\": {\n        \"dtype\": \"boolean\",\n        \"num_unique_values\": 2,\n        \"samples\": [\n          true,\n          false\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"parental_level_of_education_some college\",\n      \"properties\": {\n        \"dtype\": \"boolean\",\n        \"num_unique_values\": 2,\n        \"samples\": [\n          true,\n          false\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"parental_level_of_education_some high school\",\n      \"properties\": {\n        \"dtype\": \"boolean\",\n        \"num_unique_values\": 2,\n        \"samples\": [\n          true,\n          false\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"lunch_standard\",\n      \"properties\": {\n        \"dtype\": \"boolean\",\n        \"num_unique_values\": 2,\n        \"samples\": [\n          false,\n          true\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"test_preparation_course_none\",\n      \"properties\": {\n        \"dtype\": \"boolean\",\n        \"num_unique_values\": 2,\n        \"samples\": [\n          false,\n          true\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    }\n  ]\n}"
-            }
-          },
-          "metadata": {},
-          "execution_count": 24
-        }
-      ]
-    },
-    {
-      "cell_type": "code",
-      "source": [
         "from sklearn.model_selection import train_test_split\n",
         "from sklearn.linear_model import LinearRegression\n",
         "from sklearn.metrics import r2_score\n",
+        "import matplotlib.pyplot as plt\n",
         "\n",
-        "# 1. Select the features (X) and the target we want to predict (y)\n",
+        "# 1. Load and prepare data\n",
+        "df = pd.read_csv('students_performance.csv')\n",
+        "df.columns = df.columns.str.replace(' ', '_')\n",
+        "df_encoded = pd.get_dummies(df, drop_first=True)\n",
+        "\n",
         "X = df_encoded.drop('math_score', axis=1)\n",
         "y = df_encoded['math_score']\n",
-        "\n",
-        "# 2. Split the data: 80% for training, 20% for testing\n",
         "X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n",
         "\n",
-        "# 3. Initialize and train the AI Model\n",
+        "# 2. Train model\n",
         "model = LinearRegression()\n",
         "model.fit(X_train, y_train)\n",
-        "\n",
-        "# 4. Make predictions\n",
         "predictions = model.predict(X_test)\n",
-        "\n",
-        "# 5. Check accuracy\n",
         "accuracy = r2_score(y_test, predictions)\n",
-        "print(f\"Model Accuracy (R² Score): {accuracy:.2f}\")"
+        "print(f\"Model Accuracy (R² Score): {accuracy:.2f}\")\n",
+        "\n",
+        "# 3. Create and SAVE the graph as an image\n",
+        "plt.figure(figsize=(8, 6))\n",
+        "plt.scatter(y_test, predictions, alpha=0.5, color='blue')\n",
+        "plt.plot([y.min(), y.max()], [y.min(), y.max()], 'r--', lw=2)\n",
+        "plt.xlabel('Actual Math Score')\n",
+        "plt.ylabel('Predicted Math Score')\n",
+        "plt.title('Actual vs. Predicted Math Scores (SDG 4 Project)')\n",
+        "plt.savefig('actual_vs_predicted.png') # This saves the image\n",
+        "plt.show()"
       ],
       "metadata": {
-        "id": "sHsiQghD09kn",
-        "outputId": "cfe991df-5a26-4058-844e-ef65ba88c691",
+        "id": "UCe7ZhkPUM83",
+        "outputId": "52955d39-f061-4b09-d092-5d97df5af04e",
         "colab": {
-          "base_uri": "https://localhost:8080/"
+          "base_uri": "https://localhost:8080/",
+          "height": 536
         }
       },
-      "execution_count": 25,
+      "execution_count": 4,
       "outputs": [
         {
           "output_type": "stream",
@@ -674,32 +333,7 @@
           "text": [
             "Model Accuracy (R² Score): 0.88\n"
           ]
-        }
-      ]
-    },
-    {
-      "cell_type": "code",
-      "source": [
-        "import matplotlib.pyplot as plt\n",
-        "\n",
-        "plt.figure(figsize=(8, 6))\n",
-        "plt.scatter(y_test, predictions, alpha=0.5, color='blue')\n",
-        "plt.plot([y.min(), y.max()], [y.min(), y.max()], 'r--', lw=2) # The red dashed line\n",
-        "plt.xlabel('Actual Math Score')\n",
-        "plt.ylabel('Predicted Math Score')\n",
-        "plt.title('Actual vs. Predicted Math Scores (SDG 4 Project)')\n",
-        "plt.show()"
-      ],
-      "metadata": {
-        "id": "D9DUpLmi1KGR",
-        "outputId": "0fd28885-9c08-4de8-cfbf-a4c985fa8db3",
-        "colab": {
-          "base_uri": "https://localhost:8080/",
-          "height": 564
-        }
-      },
-      "execution_count": 26,
-      "outputs": [
+        },
         {
           "output_type": "display_data",
           "data": {
@@ -710,6 +344,112 @@
           },
           "metadata": {}
         }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from google.colab import files\n",
+        "files.download('actual_vs_predicted.png')"
+      ],
+      "metadata": {
+        "id": "Q5adWKeCU6KO",
+        "outputId": "4d918f91-8f8c-4845-f32b-55e188e49e76",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 17
+        }
+      },
+      "execution_count": 6,
+      "outputs": [
+        {
+          "output_type": "display_data",
+          "data": {
+            "text/plain": [
+              "<IPython.core.display.Javascript object>"
+            ],
+            "application/javascript": [
+              "\n",
+              "    async function download(id, filename, size) {\n",
+              "      if (!google.colab.kernel.accessAllowed) {\n",
+              "        return;\n",
+              "      }\n",
+              "      const div = document.createElement('div');\n",
+              "      const label = document.createElement('label');\n",
+              "      label.textContent = `Downloading \"${filename}\": `;\n",
+              "      div.appendChild(label);\n",
+              "      const progress = document.createElement('progress');\n",
+              "      progress.max = size;\n",
+              "      div.appendChild(progress);\n",
+              "      document.body.appendChild(div);\n",
+              "\n",
+              "      const buffers = [];\n",
+              "      let downloaded = 0;\n",
+              "\n",
+              "      const channel = await google.colab.kernel.comms.open(id);\n",
+              "      // Send a message to notify the kernel that we're ready.\n",
+              "      channel.send({})\n",
+              "\n",
+              "      for await (const message of channel.messages) {\n",
+              "        // Send a message to notify the kernel that we're ready.\n",
+              "        channel.send({})\n",
+              "        if (message.buffers) {\n",
+              "          for (const buffer of message.buffers) {\n",
+              "            buffers.push(buffer);\n",
+              "            downloaded += buffer.byteLength;\n",
+              "            progress.value = downloaded;\n",
+              "          }\n",
+              "        }\n",
+              "      }\n",
+              "      const blob = new Blob(buffers, {type: 'application/binary'});\n",
+              "      const a = document.createElement('a');\n",
+              "      a.href = window.URL.createObjectURL(blob);\n",
+              "      a.download = filename;\n",
+              "      div.appendChild(a);\n",
+              "      a.click();\n",
+              "      div.remove();\n",
+              "    }\n",
+              "  "
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "output_type": "display_data",
+          "data": {
+            "text/plain": [
+              "<IPython.core.display.Javascript object>"
+            ],
+            "application/javascript": [
+              "download(\"download_27691ef9-bddf-4ef3-a362-a5e793bdf6b4\", \"actual_vs_predicted.png\", 48110)"
+            ]
+          },
+          "metadata": {}
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "-gE-Ez1qtyIA",
+        "outputId": "e8f0c2b1-3c1e-4476-f8c2-d8f31cdb5e75"
+      },
+      "outputs": [
+        {
+          "data": {
+            "text/plain": [
+              "604800"
+            ]
+          },
+          "execution_count": null,
+          "metadata": {},
+          "output_type": "execute_result"
+        }
+      ],
+      "source": [
+        "seconds_in_a_week = 7 * seconds_in_a_day\n",
+        "seconds_in_a_week"
       ]
     },
     {
